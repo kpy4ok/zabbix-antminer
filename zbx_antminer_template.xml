@@ -31,7 +31,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Chain discovery</name>
-                    <key>custom.miner.discovery.chains[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.discovery.chains[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
@@ -54,7 +54,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hashrate</name>
-                            <key>cantminer.py.chain.rate[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <key>antminer.py.chain.rate[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
                             <delay>1m</delay>
                             <units>GH/s</units>
                             <applications>
