@@ -31,7 +31,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Chain discovery</name>
-                    <type>0</type>
+                    <type>19</type>
                     <key>custom.miner.discovery.chains[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
