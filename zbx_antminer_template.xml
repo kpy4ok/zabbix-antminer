@@ -31,13 +31,12 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Chain discovery</name>
-                    <type>19</type>
                     <key>custom.miner.discovery.chains[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Chain {#CHAINID} temperature chip</name>
-                            <key>custom.miner.chain.temp_chip[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}.0]</key>
+                            <key>antminer.py.chain.temp_chip[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}.0]</key>
                             <delay>1m</delay>
                             <units>°C</units>
                             <applications>
@@ -55,7 +54,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hashrate</name>
-                            <key>custom.miner.chain.rate[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <key>cantminer.py.chain.rate[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
                             <delay>1m</delay>
                             <units>GH/s</units>
                             <applications>
@@ -66,7 +65,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} frequency</name>
-                            <key>custom.miner.chain.freq[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <key>antminer.py.chain.freq[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
                             <delay>1m</delay>
                             <units>MHz</units>
                             <applications>
@@ -77,7 +76,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hardware errors</name>
-                            <key>custom.miner.chain.hw_errors[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <key>antminer.py.chain.hw_errors[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
                             <delay>1m</delay>
                             <applications>
                                 <application>
@@ -89,13 +88,12 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Fan discovery</name>
-                    <type>19</type>
-                    <key>custom.miner.discovery.fans[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.discovery.fans[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Fan {#FANID} speed</name>
-                            <key>custom.miner.fan[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},fan.{#FANID}]</key>
+                            <key>antminer.py.fan[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},fan.{#FANID}]</key>
                             <delay>1m</delay>
                             <units>RPM</units>
                             <applications>
@@ -117,7 +115,7 @@
             <items>
                 <item>
                     <name>Miner uptime</name>
-                    <key>custom.miner.stats.elapsed[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.elapsed[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>5m</delay>
                     <units>s</units>
                     <applications>
@@ -128,7 +126,7 @@
                 </item>
                 <item>
                     <name>5s hashrate</name>
-                    <key>custom.miner.stats.rate_5s[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.rate_5s[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -139,7 +137,7 @@
                 </item>
                 <item>
                     <name>30m hashrate</name>
-                    <key>custom.miner.stats.rate_30m[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.rate_30m[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -150,7 +148,7 @@
                 </item>
                 <item>
                     <name>Average hashrate</name>
-                    <key>custom.miner.stats.rate_avg[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.rate_avg[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -161,7 +159,7 @@
                 </item>
                 <item>
                     <name>Hardware error rate</name>
-                    <key>custom.miner.stats.hwp_total[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.hwp_total[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <units>%</units>
                     <applications>
@@ -172,7 +170,7 @@
                 </item>
                 <item>
                     <name>Frequency level</name>
-                    <key>custom.miner.stats.freq_level[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.freq_level[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <units>%</units>
                     <applications>
@@ -183,7 +181,7 @@
                 </item>
                 <item>
                     <name>Operating mode</name>
-                    <key>custom.miner.stats.miner_mode[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <key>antminer.py.stats.miner_mode[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1m</delay>
                     <applications>
                         <application>
