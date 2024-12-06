@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2024-03-06T12:00:00Z</date>
+    <groups>
+        <group>
+            <name>Templates/Mining</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Antminer</template>
+            <name>Template Antminer</name>
+            <description>Template for monitoring Antminer ASIC miners</description>
+            <groups>
+                <group>
+                    <name>Templates/Mining</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>General</name>
+                </application>
+                <application>
+                    <name>Chains</name>
+                </application>
+                <application>
+                    <name>Fans</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Chain discovery</name>
+                    <type>0</type>
+                    <key>custom.miner.discovery.chains[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} temperature chip</name>
+                            <key>custom.miner.chain.temp_chip[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}.0]</key>
+                            <delay>1m</delay>
+                            <units>°C</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;85</expression>
+                                    <name>Chain {#CHAINID} temperature too high</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} hashrate</name>
+                            <key>custom.miner.chain.rate[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <delay>1m</delay>
+                            <units>GH/s</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} frequency</name>
+                            <key>custom.miner.chain.freq[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <delay>1m</delay>
+                            <units>MHz</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} hardware errors</name>
+                            <key>custom.miner.chain.hw_errors[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chain.{#CHAINID}]</key>
+                            <delay>1m</delay>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Fan discovery</name>
+                    <type>0</type>
+                    <key>custom.miner.discovery.fans[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Fan {#FANID} speed</name>
+                            <key>custom.miner.fan[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},fan.{#FANID}]</key>
+                            <delay>1m</delay>
+                            <units>RPM</units>
+                            <applications>
+                                <application>
+                                    <name>Fans</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&lt;3000</expression>
+                                    <name>Fan {#FANID} speed too low</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <items>
+                <item>
+                    <name>Miner uptime</name>
+                    <key>custom.miner.stats.elapsed[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>5m</delay>
+                    <units>s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>5s hashrate</name>
+                    <key>custom.miner.stats.rate_5s[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>30m hashrate</name>
+                    <key>custom.miner.stats.rate_30m[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average hashrate</name>
+                    <key>custom.miner.stats.rate_avg[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hardware error rate</name>
+                    <key>custom.miner.stats.hwp_total[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Frequency level</name>
+                    <key>custom.miner.stats.freq_level[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Operating mode</name>
+                    <key>custom.miner.stats.miner_mode[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
+                    <delay>1m</delay>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$MINER.PORT}</macro>
+                    <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$MINER.USER}</macro>
+                    <value>admin</value>
+                </macro>
+                <macro>
+                    <macro>{$MINER.PASS}</macro>
+                    <value>admin</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
