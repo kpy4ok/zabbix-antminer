@@ -106,7 +106,7 @@ def discovery_chains():
         logging.error(f"Error in chain discovery: {str(e)}")
         return json.dumps({"data": []})
 
-def discover_fans():
+def discovery_fans():
     """
     Returns JSON for Zabbix low-level discovery of fans
     """
@@ -141,8 +141,8 @@ if __name__ == '__main__':
     
     if action == "discovery_chains":
         print(discovery_chains())
-    elif action == "discover_fans":
-        print(discover_fans())
+    elif action == "discovery_fans":
+        print(discovery_fans())
     else:
         if len(sys.argv) != 7:
             print("Usage for getting values: script get <host> <port> <username> <password> <item>")
