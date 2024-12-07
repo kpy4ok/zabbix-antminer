@@ -82,7 +82,7 @@ def get_value(host, port, username, password, item):
         logging.error(f"Error getting value: {str(e)}")
         return 0
 
-def discover_chains():
+def discovery_chains():
     """
     Returns JSON for Zabbix low-level discovery of chains
     """
@@ -139,8 +139,8 @@ if __name__ == '__main__':
         
     action = sys.argv[1]
     
-    if action == "discover_chains":
-        print(discover_chains())
+    if action == "discovery_chains":
+        print(discovery_chains())
     elif action == "discover_fans":
         print(discover_fans())
     else:
