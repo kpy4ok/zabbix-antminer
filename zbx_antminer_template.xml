@@ -197,11 +197,11 @@
                 </macro>
                 <macro>
                     <macro>{$MINER.USER}</macro>
-                    <value>admin</value>
+                    <value>root</value>
                 </macro>
                 <macro>
                     <macro>{$MINER.PASS}</macro>
-                    <value>admin</value>
+                    <value>root</value>
                 </macro>
             </macros>
         </template>
