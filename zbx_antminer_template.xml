@@ -31,12 +31,12 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Chain discovery</name>
-                    <key>antminer.discovery[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},chains]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py discover_chains {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Chain {#CHAINID} temperature</name>
-                            <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.temp_chip]</key>
+                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.temp_chip]</key>
                             <delay>1m</delay>
                             <units>°C</units>
                             <applications>
@@ -54,7 +54,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hashrate</name>
-                            <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.rate_real]</key>
+                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.rate_real]</key>
                             <delay>1m</delay>
                             <units>GH/s</units>
                             <applications>
@@ -65,7 +65,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} frequency</name>
-                            <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.freq_avg]</key>
+                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.freq_avg]</key>
                             <delay>1m</delay>
                             <units>MHz</units>
                             <applications>
@@ -76,7 +76,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hardware errors</name>
-                            <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.hw]</key>
+                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.hw]</key>
                             <delay>1m</delay>
                             <applications>
                                 <application>
@@ -88,12 +88,12 @@
                 </discovery_rule>
                 <discovery_rule>
                     <name>Fan discovery</name>
-                    <key>antminer.discovery[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},fans]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py discover_fans {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Fan {#FANID} speed</name>
-                            <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.fan.{#FANID}]</key>
+                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.fan.{#FANID}]</key>
                             <delay>1m</delay>
                             <units>RPM</units>
                             <applications>
@@ -115,7 +115,7 @@
             <items>
                 <item>
                     <name>Miner uptime</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.elapsed]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.elapsed]</key>
                     <delay>5m</delay>
                     <units>s</units>
                     <applications>
@@ -126,7 +126,7 @@
                 </item>
                 <item>
                     <name>5s hashrate</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_5s]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_5s]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -137,7 +137,7 @@
                 </item>
                 <item>
                     <name>30m hashrate</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_30m]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_30m]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -148,7 +148,7 @@
                 </item>
                 <item>
                     <name>Average hashrate</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_avg]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_avg]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
                     <applications>
@@ -159,7 +159,7 @@
                 </item>
                 <item>
                     <name>Hardware error rate</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.hwp_total]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.hwp_total]</key>
                     <delay>1m</delay>
                     <units>%</units>
                     <applications>
@@ -170,7 +170,7 @@
                 </item>
                 <item>
                     <name>Frequency level</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.freq-level]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.freq-level]</key>
                     <delay>1m</delay>
                     <units>%</units>
                     <applications>
@@ -181,7 +181,7 @@
                 </item>
                 <item>
                     <name>Operating mode</name>
-                    <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.miner-mode]</key>
+                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.miner-mode]</key>
                     <delay>1m</delay>
                     <applications>
                         <application>
