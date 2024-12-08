@@ -45,9 +45,9 @@ def get_value(host, port, username, password, item):
                         
                         if metric in metric_map:
                             value = chain[metric_map[metric]]
-                            # If it's a temperature array, return first value
+                            # If it's a temperature array, return last value
                             if isinstance(value, list):
-                                return value[0]
+                                return value[-1]
                             return value
                 elif keys[1] == 'fan':
                     fan_index = int(keys[2])
