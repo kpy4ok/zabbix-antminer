@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2024-03-06T12:00:00Z</date>
+    <date>2024-12-08T12:06:48Z</date>
     <groups>
         <group>
             <name>Templates/Mining</name>
@@ -19,25 +19,139 @@
             </groups>
             <applications>
                 <application>
-                    <name>General</name>
-                </application>
-                <application>
                     <name>Chains</name>
                 </application>
                 <application>
                     <name>Fans</name>
                 </application>
+                <application>
+                    <name>General</name>
+                </application>
             </applications>
+            <items>
+                <item>
+                    <name>Miner uptime</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.elapsed]</key>
+                    <delay>5m</delay>
+                    <units>s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Frequency level</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.freq-level]</key>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hardware error rate</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.hwp_total]</key>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Operating mode</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.miner-mode]</key>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>5s hashrate</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_5s]</key>
+                    <value_type>FLOAT</value_type>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>30m hashrate</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_30m]</key>
+                    <value_type>FLOAT</value_type>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Average hashrate</name>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_avg]</key>
+                    <value_type>FLOAT</value_type>
+                    <units>GH/s</units>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
             <discovery_rules>
                 <discovery_rule>
                     <name>Chain discovery</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py discover_chains {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS}]</key>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[discover_chains,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
+                            <name>Chain {#CHAINID} frequency</name>
+                            <type>EXTERNAL</type>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.freq_avg]</key>
+                            <units>MHz</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} hardware errors</name>
+                            <type>EXTERNAL</type>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.hw]</key>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} hashrate</name>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.rate_real]</key>
+                            <units>GH/s</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Chain {#CHAINID} temperature</name>
-                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.temp_chip]</key>
-                            <delay>1m</delay>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.temp_chip]</key>
                             <units>°C</units>
                             <applications>
                                 <application>
@@ -52,49 +166,17 @@
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
-                        <item_prototype>
-                            <name>Chain {#CHAINID} hashrate</name>
-                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.rate_real]</key>
-                            <delay>1m</delay>
-                            <units>GH/s</units>
-                            <applications>
-                                <application>
-                                    <name>Chains</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Chain {#CHAINID} frequency</name>
-                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.freq_avg]</key>
-                            <delay>1m</delay>
-                            <units>MHz</units>
-                            <applications>
-                                <application>
-                                    <name>Chains</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Chain {#CHAINID} hardware errors</name>
-                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.chain.{#CHAINID}.hw]</key>
-                            <delay>1m</delay>
-                            <applications>
-                                <application>
-                                    <name>Chains</name>
-                                </application>
-                            </applications>
-                        </item_prototype>
                     </item_prototypes>
                 </discovery_rule>
                 <discovery_rule>
                     <name>Fan discovery</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py discover_fans {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS}]</key>
+                    <type>EXTERNAL</type>
+                    <key>antminer.py[discover_fans,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS}]</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
                             <name>Fan {#FANID} speed</name>
-                            <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.fan.{#FANID}]</key>
-                            <delay>1m</delay>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.fan.{#FANID}]</key>
                             <units>RPM</units>
                             <applications>
                                 <application>
@@ -112,95 +194,17 @@
                     </item_prototypes>
                 </discovery_rule>
             </discovery_rules>
-            <items>
-                <item>
-                    <name>Miner uptime</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.elapsed]</key>
-                    <delay>5m</delay>
-                    <units>s</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>5s hashrate</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_5s]</key>
-                    <delay>1m</delay>
-                    <units>GH/s</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>30m hashrate</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_30m]</key>
-                    <delay>1m</delay>
-                    <units>GH/s</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>Average hashrate</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.rate_avg]</key>
-                    <delay>1m</delay>
-                    <units>GH/s</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>Hardware error rate</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.hwp_total]</key>
-                    <delay>1m</delay>
-                    <units>%</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>Frequency level</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.freq-level]</key>
-                    <delay>1m</delay>
-                    <units>%</units>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-                <item>
-                    <name>Operating mode</name>
-                    <key>system.run[/usr/lib/zabbix/externalscripts/antminer.py get {HOST.CONN} {$MINER.PORT} {$MINER.USER} {$MINER.PASS} STATS.miner-mode]</key>
-                    <delay>1m</delay>
-                    <applications>
-                        <application>
-                            <name>General</name>
-                        </application>
-                    </applications>
-                </item>
-            </items>
             <macros>
+                <macro>
+                    <macro>{$MINER.PASS}</macro>
+                    <value>root</value>
+                </macro>
                 <macro>
                     <macro>{$MINER.PORT}</macro>
                     <value>80</value>
                 </macro>
                 <macro>
                     <macro>{$MINER.USER}</macro>
-                    <value>root</value>
-                </macro>
-                <macro>
-                    <macro>{$MINER.PASS}</macro>
                     <value>root</value>
                 </macro>
             </macros>
