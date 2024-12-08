@@ -53,15 +53,18 @@ def get_value(host, port, username, password, item):
                     fan_index = int(keys[2])
                     if fan_index < len(stats['fan']):
                         return stats['fan'][fan_index]
-                else:
-                    # Handle other STATS metrics
-                    metric = keys[1]
-                    if metric in stats:
-                        return stats[metric]
-                    elif metric in ['freq-level', 'miner-mode']:  # Handle metrics with hyphens
-                        hyphen_metric = metric.replace('-', '_')
-                        if hyphen_metric in stats:
-                            return stats[hyphen_metric]
+            else:
+                # Handle single-level STATS metrics
+                metric = keys[1]
+                # Convert hyphenated metrics to underscore
+                metric_underscore = metric.replace('-', '_')
+                
+                # First try the original metric name
+                if metric in stats:
+                    return stats[metric]
+                # Then try the underscore version
+                elif metric_underscore in stats:
+                    return stats[metric_underscore]
         
         logging.error(f"Path not found: {item}")
         return 0
