@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2024-12-08T12:06:48Z</date>
+    <date>2024-12-08T12:17:53Z</date>
     <groups>
         <group>
             <name>Templates/Mining</name>
@@ -141,7 +141,9 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hashrate</name>
+                            <type>EXTERNAL</type>
                             <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.rate_real]</key>
+                            <value_type>FLOAT</value_type>
                             <units>GH/s</units>
                             <applications>
                                 <application>
@@ -151,6 +153,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} temperature</name>
+                            <type>EXTERNAL</type>
                             <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.temp_chip]</key>
                             <units>°C</units>
                             <applications>
@@ -176,6 +179,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Fan {#FANID} speed</name>
+                            <type>EXTERNAL</type>
                             <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.fan.{#FANID}]</key>
                             <units>RPM</units>
                             <applications>
