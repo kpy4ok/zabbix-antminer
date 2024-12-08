@@ -37,7 +37,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Chain {#CHAINID} temperature</name>
-                            <type>10</type>
+                            <type>0</type>
                             <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.temp_chip]</key>
                             <delay>1m</delay>
                             <units>°C</units>
@@ -56,7 +56,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hashrate</name>
-                            <type>10</type>
+                            <type>0</type>
                             <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.rate_real]</key>
                             <delay>1m</delay>
                             <units>GH/s</units>
@@ -68,7 +68,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} frequency</name>
-                            <type>10</type>
+                            <type>0</type>
                             <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.freq_avg]</key>
                             <delay>1m</delay>
                             <units>MHz</units>
@@ -80,7 +80,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Chain {#CHAINID} hardware errors</name>
-                            <type>10</type>
+                            <type>0</type>
                             <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.hw]</key>
                             <delay>1m</delay>
                             <applications>
@@ -99,7 +99,7 @@
                     <item_prototypes>
                         <item_prototype>
                             <name>Fan {#FANID} speed</name>
-                            <type>10</type>
+                            <type>0</type>
                             <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.fan.{#FANID}]</key>
                             <delay>1m</delay>
                             <units>RPM</units>
@@ -122,7 +122,7 @@
             <items>
                 <item>
                     <name>Miner uptime</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.elapsed]</key>
                     <delay>5m</delay>
                     <units>s</units>
@@ -134,7 +134,7 @@
                 </item>
                 <item>
                     <name>5s hashrate</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_5s]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
@@ -146,7 +146,7 @@
                 </item>
                 <item>
                     <name>30m hashrate</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_30m]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
@@ -158,7 +158,7 @@
                 </item>
                 <item>
                     <name>Average hashrate</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.rate_avg]</key>
                     <delay>1m</delay>
                     <units>GH/s</units>
@@ -170,7 +170,7 @@
                 </item>
                 <item>
                     <name>Hardware error rate</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.hwp_total]</key>
                     <delay>1m</delay>
                     <units>%</units>
@@ -182,7 +182,7 @@
                 </item>
                 <item>
                     <name>Frequency level</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.freq-level]</key>
                     <delay>1m</delay>
                     <units>%</units>
@@ -194,7 +194,7 @@
                 </item>
                 <item>
                     <name>Operating mode</name>
-                    <type>10</type>
+                    <type>0</type>
                     <key>antminer.get[{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.miner-mode]</key>
                     <delay>1m</delay>
                     <applications>
