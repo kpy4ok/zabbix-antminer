@@ -40,7 +40,8 @@ def get_value(host, port, username, password, item):
                             'hw': 'hw',
                             'temp_chip': 'temp_chip',
                             'temp_pcb': 'temp_pcb',
-                            'temp_pic': 'temp_pic'
+                            'temp_pic': 'temp_pic',
+                            'sn': 'sn',
                         }
                         
                         if metric in metric_map:
