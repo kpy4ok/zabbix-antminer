@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2024-12-08T12:17:53Z</date>
+    <date>2024-12-10T07:06:45Z</date>
     <groups>
         <group>
             <name>Templates/Mining</name>
@@ -145,6 +145,19 @@
                             <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.rate_real]</key>
                             <value_type>FLOAT</value_type>
                             <units>GH/s</units>
+                            <applications>
+                                <application>
+                                    <name>Chains</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Chain {#CHAINID} SN</name>
+                            <type>EXTERNAL</type>
+                            <key>antminer.py[get,{HOST.CONN},{$MINER.PORT},{$MINER.USER},{$MINER.PASS},STATS.chain.{#CHAINID}.sn]</key>
+                            <delay>1d</delay>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
                             <applications>
                                 <application>
                                     <name>Chains</name>
