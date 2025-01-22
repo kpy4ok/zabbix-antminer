@@ -18,7 +18,7 @@ Status script for Antminer to monitor with Zabbix 5
 
 # Install
 * Download antminer.py and zbx_antminer_template.xml
-* Put zbx_antminer_template.xml into ExternalScript location (usual /usr/lib/zabbix/externalscripts)
+* Put antminer.py into ExternalScript location (usual /usr/lib/zabbix/externalscripts)
 * Make antminer.py executable (`chmod 755 antminer.py`)
 * Import zabbix_template (zbx_antminer_template.xml) into zabbix
 * Add AntMiner as Zabbix Host. Use Zabbix Agent type.
