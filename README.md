@@ -24,7 +24,7 @@ Status script for Antminer to monitor with Zabbix 5
 * Add AntMiner as Zabbix Host. Use Zabbix Agent type.
 * Add Zabbix Macros `{$MINER.PORT}` with AntMiner HTTP port value if your port differ from 80.
 * Add Zabbix Macros `{$MINER.USERNAME}` with AntMiner HTTP Username if your user differ from root.
-* Add Zabbix Macros `{$MINER.PASSWORD}` with AntMiner HTTP Password if your pass differ from root.
+* Add Zabbix Macros `{$MINER.PASS}` with AntMiner HTTP Password if your pass differ from root.
 * Link template to You machine.
 
 # Inspired by
